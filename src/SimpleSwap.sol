@@ -27,22 +27,22 @@ contract SimpleSwap {
     }
   }
 
-    function swap2(address _tokenIn, uint256 _amountIn) public {
-        uint256 amountOut = getAmountOut(_amountIn);
+  function swap2(address _tokenIn, uint256 _amountIn) public {
+    uint256 amountOut = getAmountOut(_amountIn);
 
-        if (_tokenIn == address(token0)) {
-            token0.transferFrom(msg.sender, address(this), _amountIn);
-            token1.transfer(msg.sender, amountOut);
-        } else {
-            token1.transferFrom(msg.sender, address(this), _amountIn);
-            token0.transfer(msg.sender, amountOut);
-        }
+    if (_tokenIn == address(token0)) {
+      token0.transferFrom(msg.sender, address(this), _amountIn);
+      token1.transfer(msg.sender, amountOut);
+    } else {
+      token1.transferFrom(msg.sender, address(this), _amountIn);
+      token0.transfer(msg.sender, amountOut);
+    }
   }
 
-    function getAmountOut(uint256 _amountIn) public pure returns (uint256) {
-      uint256 logValue = Math.log10(_amountIn);
-      uint256 amountOut = (logValue * 1000) + 10000;
-      return amountOut;
+  function getAmountOut(uint256 _amountIn) public pure returns (uint256) {
+    uint256 logValue = Math.log10(_amountIn);
+    uint256 amountOut = (logValue * 1000) + 10000;
+    return amountOut;
   }
 
   // phase 1
